@@ -50,7 +50,7 @@ curl http://localhost:3000/
 
 ## 📁 Structure du projet
 
-.
+```
 ├── app.py # Application Flask principale
 ├── Dockerfile # Configuration de l’image
 ├── requirements.txt # Dépendances Python
@@ -58,9 +58,10 @@ curl http://localhost:3000/
 │ └── workflows/
 │ └── ci.yml # Pipeline CI/CD GitHub Actions
 └── README.md # Documentation
+```
 
 ### 🗺️ Architecture CI/CD
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Daniween/ci-cd-secure/main/.github/assets/architecture.svg" alt="Architecture Diagram" width="800"/>
+  <img src="https://raw.githubusercontent.com/Daniween/ci-secure-base/main/.github/assets/architecture.svg" alt="Architecture Diagram" width="800"/>
 </p>
