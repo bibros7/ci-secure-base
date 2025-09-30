@@ -1,0 +1,16 @@
+title = "Gitleaks Configuration for DevSecure"
+
+[[rules]]
+description = "AWS Access Key"
+regex = '''(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}'''
+tags = ["key", "AWS"]
+
+[[rules]]
+description = "Generic API Key"
+regex = '''(?i)(api_key|apikey|secret_key|private_key)["']?\s*[:=]\s*["']([^"']{12,})["']'''
+tags = ["key", "API"]
+
+[[rules]]
+description = "Password in code"
+regex = '''(?i)password\s*=\s*["'][^"']{6,}["']'''
+tags = ["password", "secret"]
