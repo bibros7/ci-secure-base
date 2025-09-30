@@ -10,16 +10,16 @@ jobs:
   security-scan:
     runs-on: ubuntu-latest
     timeout-minutes: 15
-    
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
       with:
         fetch-depth: 0
-      
+
     - name: Build Docker image
       run: docker build -t devsecure-api .
-      
+
     - name: Run Trivy vulnerability scanner
       uses: aquasecurity/trivy-action@master
       with:
@@ -27,7 +27,7 @@ jobs:
         format: 'sarif'
         output: 'trivy-results.sarif'
         exit-code: 1
-      
+
     - name: Run Snyk security scan
       uses: snyk/actions/docker@master
       env:
@@ -36,7 +36,7 @@ jobs:
         image: devsecure-api
         args: --file=Dockerfile --severity-threshold=high
       continue-on-error: true
-      
+
     - name: Detect secrets with Gitleaks
       uses: gitleaks/gitleaks-action@v2
       env:
@@ -45,7 +45,7 @@ jobs:
         config-path: .gitleaks.toml
         report-format: sarif
         exit-code: 1
-        
+
     - name: Upload security reports
       uses: actions/upload-artifact@v4
       with:
@@ -54,7 +54,7 @@ jobs:
           trivy-results.sarif
           gitleaks-report.sarif
         retention-days: 30
-        
+
     - name: Security summary
       run: |
         echo "🔒 SCANS DE SÉCURITÉ TERMINÉS"
